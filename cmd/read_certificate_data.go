@@ -34,7 +34,11 @@ func DefaultPrintCertificate(index int, certContainer helper.CertificateContaine
 
 	fingerprint := sha1.Sum(cert.Raw) // nosemgrep
 	fingerprintHex := hex.EncodeToString(fingerprint[:])
-	fmt.Printf("%d) %s \"%s\"\n", index+1, fingerprintHex, cert.Subject.String())
+	fmt.Printf("%d) %s \"%s\" \"%s\"\n", 
+		index+1, 
+		fingerprintHex, 
+		cert.Subject.String(),
+		cert.Issuer.String())
 
 	// Only for PKCS#11
 	if certContainer.Uri != "" {
